@@ -17,7 +17,7 @@ def get_article(year, start, end, next_year):
     created_at = []
     print(start, end)
     headers = {
-              "Authorization": "Bearer " + "3526a142f0cacde353db308e6eaa6d450a24423b",
+              "Authorization": "Bearer " + "", #Qiitaに登録して、APIトークンを取得してここに書き込む
               }
     params = {"page": "1",
               "per_page":"100" }
@@ -29,11 +29,11 @@ def get_article(year, start, end, next_year):
         for parpage in range(2, total_page):
             print("残りページ{}".format(total_page-parpage))
             for article in jsondatas:
-                like.append(article["likes_count"])
-                tags.append(article["tags"])
-                title.append(article["title"])
-                url.append(article["url"])
-                body.append(article["body"])
+                like.append(article["likes_count"]) #いいね数
+                tags.append(article["tags"]) # 記事のタグ
+                title.append(article["title"]) # 記事タイトル
+                url.append(article["url"]) # 記事url
+                body.append(article["body"]) # 記事の内容
                 #created_at.append(article["group"].value()[0])
             headers["page"] = str(parpage)
             r = requests.get(request_url, params=params, headers=headers, timeout=15.0)
